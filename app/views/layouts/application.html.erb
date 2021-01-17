@@ -10,6 +10,60 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="row">
+          <nav class="navbar-nav navbar-left">
+            <p class="text-light">Movies</p>
+          </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+            <li>
+              <%= link_to "トップ", root_path %>
+            </li>
+            <li>
+              <%= link_to homes_about_path do %>
+              <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span> アバウト</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user) do %>
+              <p><span class="glyphicon glyphicon-home" aria-hidden="true"></span>マイページ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <p><span class="glyphicon glyphicon-log-out logout" aria-hidden="true"></span> ログアウト</p>
+              <% end %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to root_path do %>
+              <p><span class="glyphicon glyphicon-home" aria-hidden="true"></span> トップ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to homes_about_path do %>
+              <p><span class="glyphicon glyphicon-link" aria-hidden="true"></span> アバウト</p>
+              <% end %>
+            </li>
+            <li>
+              <%=link_to new_user_registration_path do %>
+              <p><span class="glyphicon glyphicon-edit sign_up" aria-hidden="true"></span> サインアップ</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+              <p><span class="glyphicon glyphicon-log-in sign_in" aria-hidden="true"> ログイン</span></p>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <p id=“notice”><%= notice %></p>
+
     <%= yield %>
   </body>
 </html>
